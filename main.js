@@ -1,36 +1,53 @@
 const row = document.querySelector(".row");
 const btn = document.querySelector("button");
+const selectValue = document.querySelector("select");
 
 btn.addEventListener("click", () => {
     setNumber();
 });
 
 // Функция замены повторяющихся элементов в массиве
-function getRepeatArray(array, min, max) {
-    for (var j = 0; j < array.length; j++) {
-        var current = array[j];
-        for (var k = j + 1; k < array.length; k++) {
-            if (current === array[k]) {
-                array[j] = Math.floor(min + Math.random() * (max - min + 1));
-            }
-        }
-    }
-}
+// function getRepeatArray(array, min, max) {
+//     for (var j = 0; j < array.length; j++) {
+//         var current = array[j];
+//         for (var k = j + 1; k < array.length; k++) {
+//             if (current === array[k]) {
+//                 array[j] = Math.floor(min + Math.random() * (max - min + 1));
+//             }
+//         }
+//     }
+// }
 
-const win = (min, max) => {
+const win = (count, min, max) => {
     const x = [];
 
-    for (let i = 0; i < 4; i++) {
+    while (x.length < count) {
         const y = Math.floor(min + Math.random() * (max - min + 1));
-        x.push(y);
+        if (!x.includes(y)) {
+            x.push(y);
+        }
     }
-    getRepeatArray(x, min, max)
     return x.join("\t  ·  \t");
 };
 
 function setNumber() {
-    const number = win(1, 20);
-    row.innerHTML = `${number}`;
+    if (selectValue.value == 4) {
+        const number = win(4, 1, 20);
+        row.innerHTML = `${number}`;
+    } else if (selectValue.value == 5) {
+        const number = win(5, 1, 36);
+        row.innerHTML = `${number}`;
+    } else if (selectValue.value == 6) {
+        const number = win(6, 1, 45);
+        row.innerHTML = `${number}`;
+    } else if (selectValue.value == 7) {
+        const number = win(7, 1, 49);
+        row.innerHTML = `${number}`;
+    }
 }
+
+selectValue.addEventListener("change", () => {
+    setNumber();
+});
 
 setNumber();
