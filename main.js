@@ -1,11 +1,10 @@
-const row = document.querySelector(".row");
-const btn = document.querySelector("button");
-const selectValue = document.querySelector("select");
-
-btn.addEventListener("click", () => {
+// @ts-check
+var row = document.querySelector(".row");
+var btn = document.querySelector("button");
+var selectValue = document.querySelector(".select");
+btn === null || btn === void 0 ? void 0 : btn.addEventListener("click", function () {
     setNumber();
 });
-
 // Функция замены повторяющихся элементов в массиве
 // function getRepeatArray(array, min, max) {
 //     for (var j = 0; j < array.length; j++) {
@@ -17,37 +16,36 @@ btn.addEventListener("click", () => {
 //         }
 //     }
 // }
-
-const win = (count, min, max) => {
-    const x = [];
-
+var win = function (count, min, max) {
+    var x = [];
     while (x.length < count) {
-        const y = Math.floor(min + Math.random() * (max - min + 1));
+        var y = Math.floor(min + Math.random() * (max - min + 1));
+        // @ts-ignore
         if (!x.includes(y)) {
             x.push(y);
         }
     }
     return x.join("\t  ·  \t");
 };
-
 function setNumber() {
-    if (selectValue.value == 4) {
-        const number = win(4, 1, 20);
-        row.innerHTML = `${number}`;
-    } else if (selectValue.value == 5) {
-        const number = win(5, 1, 36);
-        row.innerHTML = `${number}`;
-    } else if (selectValue.value == 6) {
-        const number = win(6, 1, 45);
-        row.innerHTML = `${number}`;
-    } else if (selectValue.value == 7) {
-        const number = win(7, 1, 49);
-        row.innerHTML = `${number}`;
+    if (+(selectValue === null || selectValue === void 0 ? void 0 : selectValue.value) == 4) {
+        var number = win(4, 1, 20);
+        row.innerHTML = "".concat(number);
+    }
+    else if (+selectValue.value == 5) {
+        var number = win(5, 1, 36);
+        row.innerHTML = "".concat(number);
+    }
+    else if (+selectValue.value == 6) {
+        var number = win(6, 1, 45);
+        row.innerHTML = "".concat(number);
+    }
+    else if (+selectValue.value == 7) {
+        var number = win(7, 1, 49);
+        row.innerHTML = "".concat(number);
     }
 }
-
-selectValue.addEventListener("change", () => {
+selectValue === null || selectValue === void 0 ? void 0 : selectValue.addEventListener("change", function () {
     setNumber();
 });
-
 setNumber();
